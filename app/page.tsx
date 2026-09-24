@@ -1,8 +1,15 @@
-export default function HomePage() {
+import { getSiteSettings } from '@/lib/cms/site';
+
+export default async function HomePage() {
+  const siteSettings = await getSiteSettings();
+
   return (
     <main>
-      <h1>Company Website</h1>
-      <p>Welcome to our company.</p>
+      <h1>{siteSettings.companyName}</h1>
+
+      <p>{siteSettings.mission}</p>
+
+      <p>{siteSettings.vision}</p>
     </main>
   );
 }
