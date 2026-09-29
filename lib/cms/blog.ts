@@ -5,7 +5,9 @@ import type {
   StrapiBlogCollectionResponse,
 } from '@/types/blog';
 
-const BLOG_REVALIDATE_SECONDS = 60;
+const BLOG_REVALIDATE_SECONDS = Number(
+  process.env.BLOG_REVALIDATE_SECONDS ?? 60,
+);
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
   const response = await cmsFetch<StrapiBlogCollectionResponse>(
