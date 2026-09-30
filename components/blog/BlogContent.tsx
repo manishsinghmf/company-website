@@ -10,7 +10,7 @@ export default function BlogContent({
   content,
 }: BlogContentProps) {
   return (
-    <div>
+    <div className="space-y-6 text-base leading-8 text-slate-700 sm:text-lg">
       {content.map((block, blockIndex) => {
         if (block.type !== 'paragraph') {
           return null;
@@ -37,11 +37,7 @@ export default function BlogContent({
                 text = <s>{text}</s>;
               }
 
-              return (
-                <span key={childIndex}>
-                  {text}
-                </span>
-              );
+              return <span key={childIndex}>{text}</span>;
             })}
           </p>
         );
