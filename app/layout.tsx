@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import Header from '@/components/Header';
+import SiteShell from '@/components/layout/SiteShell';
 
 export const metadata: Metadata = {
   title: 'Company Website',
@@ -15,9 +15,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
+        <SiteShell>
+          {children}
+        </SiteShell>
 
-        {children}
       </body>
     </html>
   );
