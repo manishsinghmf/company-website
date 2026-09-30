@@ -8,19 +8,41 @@ interface ServiceCardProps {
 
 export default function ServiceCard({ service }: ServiceCardProps) {
   return (
-    <article>
-      <h2>{service.title}</h2>
+    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl focus-within:ring-2 focus-within:ring-blue-600 focus-within:ring-offset-2">
+      <div className="relative aspect-16/10 overflow-hidden bg-slate-100">
+        <Image
+          src={getCmsUrl(service.image.url)}
+          alt={service.image.alternativeText ?? service.title}
+          fill
+          sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
+          className="object-cover transition duration-500 group-hover:scale-105"
+        />
 
-      <p>{service.description}</p>
+        <div className="absolute inset-0 bg-linear-to-t from-slate-950/20 via-transparent to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
+      </div>
 
-      <p>Price: ${service.price}</p>
+      <div className="flex flex-1 flex-col p-6">
+        <h3 className="text-xl font-semibold tracking-tight text-slate-950">
+          {service.title}
+        </h3>
 
-      <Image
-        src={getCmsUrl(service.image.url)}
-        alt={service.image.alternativeText ?? service.title}
-        width={service.image.width}
-        height={service.image.height}
-      />
+        <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-600">
+          {service.description}
+        </p>
+
+        <div className="mt-6 flex items-center justify-between border-t border-slate-100 pt-5">
+          <p className="text-sm font-semibold text-slate-900">
+            From ${service.price.toLocaleString()}
+          </p>
+
+          <span
+            aria-hidden="true"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-900 transition duration-300 group-hover:bg-slate-950 group-hover:text-white"
+          >
+            →
+          </span>
+        </div>
+      </div>
     </article>
   );
 }
