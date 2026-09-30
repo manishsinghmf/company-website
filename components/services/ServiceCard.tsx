@@ -1,6 +1,7 @@
 import Image from 'next/image';
-import type { Service } from '@/types/service';
+
 import { getCmsUrl } from '@/lib/cms/url';
+import type { Service } from '@/types/service';
 
 interface ServiceCardProps {
   service: Service;
@@ -8,7 +9,7 @@ interface ServiceCardProps {
 
 export default function ServiceCard({ service }: ServiceCardProps) {
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl focus-within:ring-2 focus-within:ring-blue-600 focus-within:ring-offset-2">
+    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
       <div className="relative aspect-16/10 overflow-hidden bg-slate-100">
         <Image
           src={getCmsUrl(service.image.url)}
@@ -30,17 +31,10 @@ export default function ServiceCard({ service }: ServiceCardProps) {
           {service.description}
         </p>
 
-        <div className="mt-6 flex items-center justify-between border-t border-slate-100 pt-5">
+        <div className="mt-6 border-t border-slate-100 pt-5">
           <p className="text-sm font-semibold text-slate-900">
             From ${service.price.toLocaleString()}
           </p>
-
-          <span
-            aria-hidden="true"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-900 transition duration-300 group-hover:bg-slate-950 group-hover:text-white"
-          >
-            →
-          </span>
         </div>
       </div>
     </article>
